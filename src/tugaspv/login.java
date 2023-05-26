@@ -5,15 +5,18 @@
  */
 package tugaspv;
 
-/**
- *
- * @author user
- */
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+
 public class login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login
-     */
+    private Connection conn = new koneksi().connect();
+    
     public login() {
         initComponents();
     }
@@ -34,8 +37,8 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
+        txtUsername = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         login = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
@@ -95,21 +98,41 @@ public class login extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        username.setBackground(new java.awt.Color(255, 255, 0));
-        username.setFont(new java.awt.Font("Batang", 1, 12)); // NOI18N
-        username.setForeground(new java.awt.Color(204, 0, 0));
+        txtUsername.setBackground(new java.awt.Color(255, 255, 0));
+        txtUsername.setFont(new java.awt.Font("Batang", 1, 12)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(204, 0, 0));
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyPressed(evt);
+            }
+        });
 
-        password.setBackground(new java.awt.Color(255, 255, 0));
-        password.setFont(new java.awt.Font("Batang", 1, 12)); // NOI18N
+        txtPassword.setBackground(new java.awt.Color(255, 255, 0));
+        txtPassword.setFont(new java.awt.Font("Batang", 1, 12)); // NOI18N
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
 
         login.setBackground(new java.awt.Color(255, 255, 0));
         login.setFont(new java.awt.Font("Batang", 1, 10)); // NOI18N
         login.setForeground(new java.awt.Color(204, 0, 0));
         login.setText("LOGIN");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
 
         reset.setBackground(new java.awt.Color(255, 255, 0));
         reset.setForeground(new java.awt.Color(204, 0, 0));
         reset.setText("RESET");
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,8 +152,8 @@ public class login extends javax.swing.JFrame {
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,12 +161,12 @@ public class login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(login)
@@ -158,7 +181,60 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 490));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        // TODO add your handling code here:
+        txtUsername.setText("");
+        txtPassword.setText("");
+    }//GEN-LAST:event_resetActionPerformed
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        // TODO add your handling code here:
+        String level =""; 
+        try {
+            txtUsername.requestFocus();
+            java.sql.Statement stat = conn.createStatement();
+            ResultSet result=stat.executeQuery ("SELECT * FROM user WHERE "
+                + "username='" +txtUsername.getText()+"'");
+            if (result.next()) {
+                if (txtPassword.getText().equals(result.getString("password"))){
+                    //new MenuUtama().show();
+                    JOptionPane.showMessageDialog(rootPane, "Selamat Datang  "+txtUsername.getText());
+                    aplikasi apk = new aplikasi();
+                    apk.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    apk.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane,"Password Salah");
+                    txtPassword.setText("");
+                    txtUsername.requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "User Tidak Ditemukan");
+                txtUsername.setText("");
+                txtPassword.setText("");
+                txtUsername.requestFocus();
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(rootPane, "Gagal");
+        }
+    }//GEN-LAST:event_loginActionPerformed
+
+    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtPassword.requestFocus();
+        }
+    }//GEN-LAST:event_txtUsernameKeyPressed
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode()== KeyEvent.VK_ENTER) {
+            loginActionPerformed(new ActionEvent(evt.getSource(), evt.getID(), "Key Press Login"));
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -205,8 +281,8 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton login;
-    private javax.swing.JPasswordField password;
     private javax.swing.JButton reset;
-    private javax.swing.JTextField username;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

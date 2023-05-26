@@ -11,11 +11,14 @@ package tugaspv;
  */
 public class administrator extends javax.swing.JFrame {
 
-    /**
-     * Creates new form administrator
-     */
-    public administrator() {
+    
+    
+    public administrator(String nama, String notlp) {
         initComponents();
+    }
+
+    administrator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -32,7 +35,6 @@ public class administrator extends javax.swing.JFrame {
         dtmakanan = new javax.swing.JButton();
         dtminuman = new javax.swing.JButton();
         dtpaket = new javax.swing.JButton();
-        dtpelanggan = new javax.swing.JButton();
         mp = new javax.swing.JPanel();
         mpdtmakanan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -77,9 +79,6 @@ public class administrator extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        mpdtpelanggan = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,16 +93,13 @@ public class administrator extends javax.swing.JFrame {
 
         dtpaket.setText("MENU PAKET");
 
-        dtpelanggan.setText("Laporan Harian");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dtmakanan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dtmakanan, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
             .addComponent(dtminuman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(dtpaket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(dtpelanggan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +109,7 @@ public class administrator extends javax.swing.JFrame {
                 .addComponent(dtminuman, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dtpaket, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dtpelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         mp.setLayout(new java.awt.CardLayout());
@@ -378,38 +372,6 @@ public class administrator extends javax.swing.JFrame {
 
         mp.add(mpdtpaketan, "card4");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "NAMA", "NO TELPON"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout mpdtpelangganLayout = new javax.swing.GroupLayout(mpdtpelanggan);
-        mpdtpelanggan.setLayout(mpdtpelangganLayout);
-        mpdtpelangganLayout.setHorizontalGroup(
-            mpdtpelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
-        );
-        mpdtpelangganLayout.setVerticalGroup(
-            mpdtpelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-        );
-
-        mp.add(mpdtpelanggan, "card5");
-
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -424,7 +386,7 @@ public class administrator extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(mp, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -441,6 +403,7 @@ public class administrator extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void dtminumanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dtminumanActionPerformed
@@ -477,7 +440,7 @@ public class administrator extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new administrator().setVisible(true);
+                new administrator("","").setVisible(true);
             }
         });
     }
@@ -487,7 +450,6 @@ public class administrator extends javax.swing.JFrame {
     private javax.swing.JButton dtmakanan;
     private javax.swing.JButton dtminuman;
     private javax.swing.JButton dtpaket;
-    private javax.swing.JButton dtpelanggan;
     private javax.swing.JTextField hrgarmnrl;
     private javax.swing.JTextField hrgaym;
     private javax.swing.JTextField hrgaym1;
@@ -529,12 +491,9 @@ public class administrator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel mp;
     private javax.swing.JPanel mpdtmakanan;
     private javax.swing.JPanel mpdtminuman;
     private javax.swing.JPanel mpdtpaketan;
-    private javax.swing.JPanel mpdtpelanggan;
     // End of variables declaration//GEN-END:variables
 }
